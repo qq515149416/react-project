@@ -10,6 +10,9 @@ module.exports = {
         publicPath: "/public",
         libraryTarget: "commonjs2"
     },
+    resolve: {
+        extensions: [".js", ".jsx"]
+    },
     module: {
         rules: [
             {
