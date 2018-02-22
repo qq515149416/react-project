@@ -1,5 +1,11 @@
 import React from "react";
-
+import PropTypes from 'prop-types';
+import {AppStore} from "../../store/app-store";
+import {
+    observer,
+    inject
+} from "mobx-react";
+@inject("appStore") @observer
 export default class List extends React.Component {
     componentDidMount() {
          // do somethink here
@@ -7,7 +13,12 @@ export default class List extends React.Component {
 
     render() {
         return (
-            <div>这是列表页</div>
+            <div>
+                {this.props.appStore.msg}
+            </div>
         );
     }
 }
+List.propTypes = {
+    appStore: PropTypes.instanceOf(AppStore).isRequired
+};
