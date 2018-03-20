@@ -4,15 +4,23 @@ import {
     action
 } from "mobx";
 
-export class AppStore {
-    @observable name = "test";
-    @observable num = 0;
+export default class AppStore {
+    constructor({name,num}={name: "test",num: 0}) {
+        this.name = name;
+        this.num = num;
+    }
+    @observable name;
+    @observable num;
     @computed get msg() {
         return `${this.name} num is ${this.num}`;
     }
     @action add() {
         this.num += 1;
     }
+    toJson() {
+        return {
+            name: this.name,
+            num: this.num,
+        }
+    }
 }
-const appStore = new AppStore();
-export default appStore;

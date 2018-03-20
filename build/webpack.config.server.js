@@ -10,6 +10,7 @@ module.exports = {
         publicPath: "/public",
         libraryTarget: "commonjs2"
     },
+    externals: Object.keys(require("../package.json").dependencies),
     resolve: {
         extensions: [".js", ".jsx"]
     },

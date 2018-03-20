@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import { AppContainer } from 'react-hot-loader';
 import {Provider} from "mobx-react";
-import appStore from "./store/app-store";
+import AppStore from "./store/app-store";
 import App from "./views/App";
 // ReactDOM.render(<App />,document.getElementById("root"));
 const root = document.getElementById("root");
+const initialState = window.__INITIAL__STATE__ || {};
 const render = Component => {
     ReactDOM.render(
         <AppContainer>
-            <Provider appStore={appStore}>
+            <Provider appStore={new AppStore(initialState.appStore)}>
                 <BrowserRouter>
                     <Component />
                 </BrowserRouter>

@@ -32,6 +32,10 @@ let config = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname,"../client/index.html")
+        }),
+        new HtmlWebpackPlugin({
+            template: "!!ejs-compiled-loader!"+path.join(__dirname,"../client/server.template.ejs"),
+            filename: "server.ejs"
         })
     ]    
 }
@@ -53,6 +57,9 @@ if(isDev) {
         publicPath: "/public",
         historyApiFallback: {
             index: "/public/index.html"
+        },
+        proxy: {
+            "/api": "http://127.0.0.1:8081"
         }
     }
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
